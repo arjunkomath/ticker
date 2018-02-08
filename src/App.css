@@ -1,0 +1,30 @@
+.ticker {
+    text-align: center;
+}
+
+.label {
+    font-size: 3em;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -150px;
+    transition: all ease-in 0.5s;
+}
+
+.value {
+    text-align: center;
+    font-size: 8em;
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -82px;
+    transition: all ease-in 0.5s;
+}
+
+.tools {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    color: #3e3e3e;
+    z-index: 1;
+}
