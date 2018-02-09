@@ -42,6 +42,7 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.getData();
         var interval = setInterval(() => {
             this.getData();
         }, this.state.config.pollInterval);
@@ -90,6 +91,9 @@ class App extends Component {
         }
 
         localStorage.setItem('config', JSON.stringify(config));
+
+        // update data
+        this.getData();
 
         // Restart our api call
         this.setState({
