@@ -15,6 +15,8 @@ let CONFIG = {
         url: 'https://api.coindesk.com/v1/bpi/currentprice.json',
         valuePath: 'bpi.USD.rate_float',
         pollInterval: 2500,
+        backgroundColor: '#282b30',
+        textColor: '#e3e3e3'
     }
 };
 
@@ -26,7 +28,7 @@ class App extends Component {
             value: 0,
             style: {
                 tickerTop: '50%',
-                settingsBottom: -300
+                settingsBottom: -360
             },
             interval: null
         };
@@ -36,6 +38,8 @@ class App extends Component {
             } catch (e) {
                 this.state.config = CONFIG.config;
             }
+            // restore default if missing
+            this.state.config = Object.assign({}, CONFIG.config, this.state.config);
         } else {
             this.state.config = CONFIG.config;
         }
@@ -79,7 +83,15 @@ class App extends Component {
         autoClose: CONFIG.alertAutoClose
     });
 
-    updateConfig = async (config) => {
+    updateConfig = async (config, reloadData) => {
+        if (!reloadData) {
+            this.setState({
+                config: config
+            });
+            localStorage.setItem('config', JSON.stringify(config));
+            return;
+        }
+
         // check if any fields are empty
         if (!config.label || !config.url || !config.valuePath) {
             return this.notifyError("Please enter values for all fields");
@@ -115,7 +127,7 @@ class App extends Component {
             showSettings: !this.state.showSettings,
             style: {
                 tickerTop: !this.state.showSettings ? '32%' : '50%',
-                settingsBottom: !this.state.showSettings ? -20 : -300
+                settingsBottom: !this.state.showSettings ? -20 : -360
             }
         })
     }
@@ -125,9 +137,9 @@ class App extends Component {
             <div className="Container">
                 <ToastContainer />
                 <div className="header">
-                    <a href="https://github.com/arjunkomath/ticker" target="_blank">about</a>
-                    <a href="https://github.com/arjunkomath/ticker/issues" target="_blank">feedback</a>
-                    <a href="https://github.com/arjunkomath/ticker" target="_blank">source</a>
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank" rel="noopener noreferrer">about</a>
+                    <a href="https://github.com/arjunkomath/ticker/issues" target="_blank" rel="noopener noreferrer">feedback</a>
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank" rel="noopener noreferrer">source</a>
                 </div>
                 <div className="ticker">
                     <h2 style={{ top: this.state.style.tickerTop }} className="label">{this.state.config.label}</h2>
@@ -140,6 +152,42 @@ class App extends Component {
                     style={{ bottom: this.state.style.settingsBottom }}
                     toggleSettings={this.toggleSettings}
                     updateConfig={this.updateConfig} />
+
+                <style>
+                    {
+                        `body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', serif;
+    overflow: hidden;
+    background: ${this.state.config.backgroundColor};
+    color: ${this.state.config.textColor};
+}
+
+.header a,
+.input-group>.form-control,
+.input-group>.input-group-prepend>.input-group-text {
+    color: ${this.state.config.textColor};
+}
+
+.react-tabs__tab-list {
+    border-bottom: 1px solid ${this.state.config.textColor};
+}
+
+.react-tabs__tab--selected,
+.form-control,
+.input-group-text {
+    border-color: ${this.state.config.textColor};
+}
+
+.btn-secondary {
+    color: ${this.state.config.backgroundColor};
+    background-color: ${this.state.config.textColor};
+    border-color: ${this.state.config.textColor};
+}
+`
+                    }
+                </style>
             </div>
         );
     }

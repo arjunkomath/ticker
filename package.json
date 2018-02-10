@@ -5,9 +5,11 @@
     "dependencies": {
         "axios": "^0.17.1",
         "react": "^16.2.0",
+        "react-color": "^2.13.8",
         "react-dom": "^16.2.0",
         "react-odometerjs": "^2.0.0",
         "react-scripts": "1.1.0",
+        "react-tabs": "^2.2.1",
         "react-toastify": "^3.3.2"
     },
     "scripts": {
