@@ -1,24 +1,27 @@
 {
-  "name": "ticker",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "axios": "^0.17.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-odometerjs": "^2.0.0",
-    "react-scripts": "1.1.0",
-    "react-toastify": "^3.3.2"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
-  },
-  "devDependencies": {
-    "cypress": "^1.4.2"
-  }
+    "name": "ticker",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "axios": "^0.17.1",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
+        "react-odometerjs": "^2.0.0",
+        "react-scripts": "1.1.0",
+        "react-toastify": "^3.3.2"
+    },
+    "scripts": {
+        "start": "react-scripts start",
+        "build": "react-scripts build",
+        "test": "react-scripts test --env=jsdom",
+        "eject": "react-scripts eject",
+        "cypress:open": "cypress open",
+        "cypress:run": "cypress run",
+        "contrib:add": "all-contributors add",
+        "contrib:generate": "all-contributors generate"
+    },
+    "devDependencies": {
+        "all-contributors-cli": "^4.10.1",
+        "cypress": "^1.4.2"
+    }
 }
