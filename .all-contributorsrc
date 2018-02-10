@@ -6,5 +6,15 @@
   ],
   "imageSize": 100,
   "commit": true,
-  "contributors": []
+  "contributors": [
+    {
+      "login": "sirajulm",
+      "name": "Sirajul Muneer",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/2260996?v=4",
+      "profile": "https://github.com/sirajulm",
+      "contributions": [
+        "design"
+      ]
+    }
+  ]
 }
