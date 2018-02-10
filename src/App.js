@@ -104,13 +104,13 @@ class App extends Component {
 
         localStorage.setItem('config', JSON.stringify(config));
 
-        // update data
-        this.getData();
-
         // Restart our api call
         this.setState({
             config: config,
         }, () => {
+            // update data
+            this.getData();
+
             clearInterval(this.state.interval);
             var interval = setInterval(() => {
                 this.getData();
