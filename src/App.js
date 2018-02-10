@@ -124,6 +124,11 @@ class App extends Component {
         return (
             <div className="Container">
                 <ToastContainer />
+                <div className="header">
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank">about</a>
+                    <a href="https://github.com/arjunkomath/ticker/issues" target="_blank">feedback</a>
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank">source</a>
+                </div>
                 <div className="ticker">
                     <h2 style={{ top: this.state.style.tickerTop }} className="label">{this.state.config.label}</h2>
                     <div style={{ top: this.state.style.tickerTop }} className="value">

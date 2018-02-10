@@ -25,6 +25,18 @@
     position: absolute;
     text-align: center;
     width: 100%;
-    color: #3e3e3e;
     z-index: 1;
+}
+
+.header {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+}
+
+.header a {
+    color: #878b90;
+    display: inline-block;
+    margin: 5px 20px;
 }
