@@ -10,10 +10,7 @@
     padding: 15px;
     border-radius: 13px;
     /* color: #878b90; */
-}
-
-.form-control {
-    /* color: #878b90; */
+    background: rgba(0, 0, 0, 0.1);
 }
 
 p {
@@ -85,4 +82,11 @@ p {
 .colorpicker {
     display: inline-block;
     margin: 15px;
+}
+
+.input-group>.input-group-prepend>.input-group-text {
+    width: 120px;
+}
+.input-group-prepend {
+    width: 120px;
 }
