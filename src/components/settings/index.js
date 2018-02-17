@@ -37,7 +37,7 @@ class Settings extends Component {
 
     render() {
         return (
-            <div style={this.props.style} className="settings">
+            <div style={this.props.style} className="settings auto-hide">
                 <p style={{ cursor: 'pointer' }} onClick={this.props.toggleSettings}>Settings</p>
 
                 <Tabs>
