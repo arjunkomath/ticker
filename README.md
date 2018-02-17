@@ -74,6 +74,8 @@ If you'd like to make some changes yourself, see the following:
 5. If you contributed something new, run `yarn contrib:add <your GitHub username>` to add yourself [below](#contributors)
 6. Finally, submit a [pull request](https://help.github.com/articles/creating-a-pull-request-from-a-fork/) with your changes!
 
+Here are some [good first issues](https://github.com/arjunkomath/ticker/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
+
 ## Contributors
 
 Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds/all-contributors#emoji-key)):
