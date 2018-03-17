@@ -1,3 +1,11 @@
+/**
+ * @summary App home page file
+ * @author Arjun Komath <arjunkomath@gmail.com>
+ *
+ * Created at     : 2018-02-25 15:47:50
+ * Last modified  : 2018-03-17 14:02:00
+ */
+
 import React, { Component } from "react";
 import "./App.css";
 import "./odometer.css";
@@ -7,11 +15,10 @@ import Odometer from "react-odometerjs";
 import { ToastContainer, toast } from "react-toastify";
 
 import Settings from "./components/settings";
-import { mouseAware } from "react-mouse-aware";
 
 let CONFIG = {
     alertAutoClose: 5000,
-    autoHideTime: 5000,
+    autoHideTime: 15000,
     config: {
         label: "Bitcoin Price (USD)",
         url: "https://api.coindesk.com/v1/bpi/currentprice.json",
@@ -49,6 +56,8 @@ class App extends Component {
         } else {
             this.state.config = CONFIG.config;
         }
+
+        this.controlsTimeout = null;
     }
 
     componentDidMount() {
@@ -59,13 +68,7 @@ class App extends Component {
         this.setState({
             interval: interval
         });
-
-        // autohide controls
-        setTimeout(() => {
-            this.setState({
-                hideControls: true
-            });
-        }, CONFIG.autoHideTime);
+        this.showControls();
     }
 
     getData = async () => {
@@ -156,11 +159,28 @@ class App extends Component {
         });
     };
 
+    showControls = () => {
+        console.log("showControls");
+        if (this.state.hideControls) {
+            this.setState({ hideControls: false });
+        }
+        if(this.controlsTimeout) {
+            clearTimeout(this.controlsTimeout);
+        }
+        // autohide controls
+        this.controlsTimeout = setTimeout(() => {
+            this.setState({
+                hideControls: true
+            });
+            if(this.state.showSettings) {
+                this.toggleSettings();
+            }
+        }, CONFIG.autoHideTime);
+    };
+
     render() {
-        let { isOver } = this.props;
-        console.log("isOver", isOver)
         return (
-            <div className="Container">
+            <div className="Container" onMouseMove={this.showControls}>
                 <ToastContainer />
                 <div className="header auto-hide">
                     <a
@@ -168,45 +188,51 @@ class App extends Component {
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        about
-                    </a>
+                        about{" "}
+                    </a>{" "}
                     <a
                         href="https://github.com/arjunkomath/ticker/issues"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        feedback
-                    </a>
+                        feedback{" "}
+                    </a>{" "}
                     <a
                         href="https://github.com/arjunkomath/ticker"
                         target="_blank"
                         rel="noopener noreferrer"
                     >
-                        source
-                    </a>
-                </div>
+                        source{" "}
+                    </a>{" "}
+                </div>{" "}
                 <div className="ticker">
                     <h2
-                        style={{ top: this.state.style.tickerTop }}
+                        style={{
+                            top: this.state.style.tickerTop
+                        }}
                         className="label"
                     >
-                        {this.state.config.label}
-                    </h2>
+                        {this.state.config.label}{" "}
+                    </h2>{" "}
                     <div
-                        style={{ top: this.state.style.tickerTop }}
+                        style={{
+                            top: this.state.style.tickerTop
+                        }}
                         className="value"
                     >
-                        <Odometer value={this.state.value} />
-                    </div>
-                </div>
+                        <Odometer value={this.state.value} />{" "}
+                    </div>{" "}
+                </div>{" "}
                 <Settings
                     config={this.state.config}
-                    style={{ bottom: this.state.style.settingsBottom }}
+                    style={{
+                        bottom: this.state.style.settingsBottom
+                    }}
                     toggleSettings={this.toggleSettings}
                     updateConfig={this.updateConfig}
                 />
-
                 <style>
+                    {" "}
                     {`body {
     margin: 0;
     padding: 0;
@@ -217,7 +243,7 @@ class App extends Component {
 }
 
 .auto-hide {
-    opacity: ${this.state.isOver ? 1 : 0} !important;
+    opacity: ${this.state.hideControls ? 0 : 1} !important;
 }
 
 .header a,
@@ -241,11 +267,11 @@ class App extends Component {
     background-color: ${this.state.config.textColor};
     border-color: ${this.state.config.textColor};
 }
-`}
-                </style>
+`}{" "}
+                </style>{" "}
             </div>
         );
     }
 }
 
-export default mouseAware()(App);
+export default App;
