@@ -3,7 +3,7 @@
  * @author Arjun Komath <arjunkomath@gmail.com>
  *
  * Created at     : 2018-02-25 15:47:50
- * Last modified  : 2018-03-17 14:02:00
+ * Last modified  : 2018-03-17 14:05:44
  */
 
 import React, { Component } from "react";
@@ -48,11 +48,7 @@ class App extends Component {
                 this.state.config = CONFIG.config;
             }
             // restore default if missing
-            this.state.config = Object.assign(
-                {},
-                CONFIG.config,
-                this.state.config
-            );
+            this.state.config = Object.assign({}, CONFIG.config, this.state.config);
         } else {
             this.state.config = CONFIG.config;
         }
@@ -79,9 +75,7 @@ class App extends Component {
         } catch (e) {
             clearInterval(this.state.interval);
             this.toggleSettings();
-            this.notifyError(
-                "Oops! We're unable to fetch data, please update JSON API url"
-            );
+            this.notifyError("Oops! We're unable to fetch data, please update JSON API url");
         }
 
         value = window._.get(response.data, this.state.config.valuePath);
@@ -89,9 +83,7 @@ class App extends Component {
         if (!value || isNaN(value)) {
             clearInterval(this.state.interval);
             this.toggleSettings();
-            return this.notifyError(
-                "The value from path doesn't seem to work!"
-            );
+            return this.notifyError("The value from path doesn't seem to work!");
         }
 
         this.setState({
@@ -121,9 +113,7 @@ class App extends Component {
 
         // Validate poll interval
         if (isNaN(config.pollInterval) || config.pollInterval < 500) {
-            return this.notifyError(
-                "Please enter a valid number greater than 500"
-            );
+            return this.notifyError("Please enter a valid number greater than 500");
         }
 
         localStorage.setItem("config", JSON.stringify(config));
@@ -160,11 +150,10 @@ class App extends Component {
     };
 
     showControls = () => {
-        console.log("showControls");
         if (this.state.hideControls) {
             this.setState({ hideControls: false });
         }
-        if(this.controlsTimeout) {
+        if (this.controlsTimeout) {
             clearTimeout(this.controlsTimeout);
         }
         // autohide controls
@@ -172,7 +161,7 @@ class App extends Component {
             this.setState({
                 hideControls: true
             });
-            if(this.state.showSettings) {
+            if (this.state.showSettings) {
                 this.toggleSettings();
             }
         }, CONFIG.autoHideTime);
@@ -183,28 +172,16 @@ class App extends Component {
             <div className="Container" onMouseMove={this.showControls}>
                 <ToastContainer />
                 <div className="header auto-hide">
-                    <a
-                        href="https://github.com/arjunkomath/ticker"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        about{" "}
-                    </a>{" "}
-                    <a
-                        href="https://github.com/arjunkomath/ticker/issues"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        feedback{" "}
-                    </a>{" "}
-                    <a
-                        href="https://github.com/arjunkomath/ticker"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                    >
-                        source{" "}
-                    </a>{" "}
-                </div>{" "}
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank" rel="noopener noreferrer">
+                        about
+                    </a>
+                    <a href="https://github.com/arjunkomath/ticker/issues" target="_blank" rel="noopener noreferrer">
+                        feedback
+                    </a>
+                    <a href="https://github.com/arjunkomath/ticker" target="_blank" rel="noopener noreferrer">
+                        source
+                    </a>
+                </div>
                 <div className="ticker">
                     <h2
                         style={{
@@ -212,17 +189,17 @@ class App extends Component {
                         }}
                         className="label"
                     >
-                        {this.state.config.label}{" "}
-                    </h2>{" "}
+                        {this.state.config.label}
+                    </h2>
                     <div
                         style={{
                             top: this.state.style.tickerTop
                         }}
                         className="value"
                     >
-                        <Odometer value={this.state.value} />{" "}
-                    </div>{" "}
-                </div>{" "}
+                        <Odometer value={this.state.value} />
+                    </div>
+                </div>
                 <Settings
                     config={this.state.config}
                     style={{
@@ -232,7 +209,6 @@ class App extends Component {
                     updateConfig={this.updateConfig}
                 />
                 <style>
-                    {" "}
                     {`body {
     margin: 0;
     padding: 0;
@@ -267,8 +243,8 @@ class App extends Component {
     background-color: ${this.state.config.textColor};
     border-color: ${this.state.config.textColor};
 }
-`}{" "}
-                </style>{" "}
+`}
+                </style>
             </div>
         );
     }
