@@ -90,3 +90,17 @@ p {
 .input-group-prepend {
     width: 120px;
 }
+
+.font-size-label {
+    margin-top: 25px;
+    font-weight: 100;
+    text-align: left;
+}
+.font-size-value {
+    text-align: right;
+    float: right;
+}
+
+.font-size-slider {
+    margin-top: 5px;
+}

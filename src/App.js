@@ -3,7 +3,7 @@
  * @author Arjun Komath <arjunkomath@gmail.com>
  *
  * Created at     : 2018-02-25 15:47:50
- * Last modified  : 2018-03-17 14:05:44
+ * Last modified  : 2018-03-31 13:37:22
  */
 
 import React, { Component } from "react";
@@ -25,7 +25,9 @@ let CONFIG = {
         valuePath: "bpi.USD.rate_float",
         pollInterval: 2500,
         backgroundColor: "#282b30",
-        textColor: "#e3e3e3"
+        textColor: "#e3e3e3",
+        labelFontSize: 45,
+        valueFontSize: 120
     }
 };
 
@@ -212,10 +214,17 @@ class App extends Component {
                     {`body {
     margin: 0;
     padding: 0;
-    font-family: 'Nunito', serif;
+    font-family: -apple-system, system-ui, 'Nunito', serif;
     overflow: hidden;
     background: ${this.state.config.backgroundColor};
     color: ${this.state.config.textColor};
+}
+
+.label {
+    font-size: ${this.state.config.labelFontSize}px;
+}
+.value {
+    font-size: ${this.state.config.valueFontSize}px;
 }
 
 .auto-hide {
@@ -242,6 +251,16 @@ class App extends Component {
     color: ${this.state.config.backgroundColor};
     background-color: ${this.state.config.textColor};
     border-color: ${this.state.config.textColor};
+}
+
+.rc-slider-track {
+    background-color: ${this.state.config.textColor} !important;
+}
+.rc-slider-handle {
+    border: solid 2px ${this.state.config.textColor} !important;
+}
+.rc-slider-rail {
+    background-color: ${this.state.config.backgroundColor} !important;
 }
 `}
                 </style>

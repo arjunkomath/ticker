@@ -3,7 +3,6 @@
 }
 
 .label {
-    font-size: 3em;
     position: absolute;
     width: 100%;
     top: 50%;
@@ -13,7 +12,6 @@
 
 .value {
     text-align: center;
-    font-size: 8em;
     position: absolute;
     width: 100%;
     top: 50%;
