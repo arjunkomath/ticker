@@ -3,7 +3,7 @@
  * @author Arjun Komath <arjunkomath@gmail.com>
  *
  * Created at     : 2018-02-25 15:47:50
- * Last modified  : 2018-03-31 13:37:22
+ * Last modified  : 2019-10-29 21:44:23
  */
 
 import React, { Component } from "react";
@@ -214,7 +214,7 @@ class App extends Component {
                     {`body {
     margin: 0;
     padding: 0;
-    font-family: -apple-system, system-ui, 'Nunito', serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     overflow: hidden;
     background: ${this.state.config.backgroundColor};
     color: ${this.state.config.textColor};
